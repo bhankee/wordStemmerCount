@@ -1,9 +1,14 @@
+import Header from './header'
+import UserInput from './userInput'
+
 import './App.css';
+
 
 function App() {
   return (
     <div className="App">
-    <h1>Stemmer Word Count</h1>
+      <Header/>
+      <UserInput/>
     </div>
   );
 }
