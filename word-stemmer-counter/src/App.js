@@ -1,5 +1,5 @@
-import Header from './header'
-import UserInput from './userInput'
+import Header from './Header'
+import Interface from './Interface'
 
 import './App.css';
 
@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <Header/>
-      <UserInput/>
+      <Interface/>
     </div>
   );
 }

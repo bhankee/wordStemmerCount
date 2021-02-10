@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import ResultsTable from './Table'
+import Form from './Form'
 
-function UserInput() {
+
+function Interface() {
 
     const [results, setResults] = useState([]);
 
@@ -97,13 +99,14 @@ would be more maintainable with more words.
 
     return(
         <>
-        <input type="file" id="txtDocUpload" onChange={readFile}  multiple />
-        <ResultsTable results ={results}/>
+            <Form eventFunct={readFile} />
+
+            {results.length
+            ? <ResultsTable results ={results}/>
+            : null}
         </>
-
     )
-
 }
 
 
-  export default UserInput;
+  export default Interface;

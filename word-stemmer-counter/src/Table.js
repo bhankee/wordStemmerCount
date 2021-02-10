@@ -29,7 +29,7 @@ function ResultsTable({results}) {
     <Table className={classes.table} aria-label="simple table">
       <TableHead>
         <TableRow>
-          <TableCell align="left">Word</TableCell>
+          <TableCell align="left">Word (Top 25)</TableCell>
           <TableCell align="left">Count</TableCell>
         </TableRow>
       </TableHead>
@@ -39,7 +39,6 @@ function ResultsTable({results}) {
 
             return(
           <TableRow key={ind}>
-
             <TableCell align="left">{splitWord[0]}</TableCell>
             <TableCell align="left">{splitWord[1]}</TableCell>
           </TableRow>
