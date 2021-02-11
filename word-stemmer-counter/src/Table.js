@@ -34,7 +34,7 @@ function ResultsTable({results}) {
         </TableRow>
       </TableHead>
       <TableBody>
-        {results.map((word, ind) => {
+        {results.slice(0, 25).map((word, ind) => {
             let splitWord = word.split(':')
 
             return(

@@ -10,7 +10,7 @@ function Interface() {
     let wordMap = {}
 
     const updateWordState = (key) => {
-        const addState = (newMessage) => setResults(state => [...state, newMessage])
+        const addState = (newWord) => setResults(state => [...state, newWord])
 
         key.filter(ky => ky !== "").map((thisKey, ind) => {
             let keyValPair = `${key[ind]}: ${wordMap[key[ind]]}`
@@ -19,7 +19,10 @@ function Interface() {
     }
 
 
-    const readFile = event => {
+    const readFile = (event, useStopWords) => {
+
+        // Reset state
+        setResults(state => [])
         const {target:input} = event
 
         let file = input.files[0]
@@ -32,14 +35,14 @@ function Interface() {
             var keys = []
 
             allWords.map((word, ind) => {
-                if(stopWords.includes(word.toLowerCase())) return
+                if(useStopWords && stopWords.includes(word.toLowerCase())) return
 
                 word = stemWordList(word)
-                // It's a new word!
+                // It's a new word
                 if (wordMap[word] === undefined) {
                     wordMap[word] = 1
                     keys.push(word)
-                // We've seen this word before!
+                // We've seen this word before
                 } else {
                   wordMap[word]++
                 }
@@ -52,7 +55,6 @@ function Interface() {
         reader.onerror = function() {
           console.log(reader.error);
         };
-
       }
     }
 

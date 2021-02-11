@@ -6,20 +6,10 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
+import { withStyles } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
 
-
-const styles = theme => ({
-    root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing.unit * 2,
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
-  })
 
 
 function Form({eventFunct}) {
@@ -30,17 +20,21 @@ function Form({eventFunct}) {
         setSwitch({ ...state,  [event.target.name]: event.target.checked  });
     }
 
+    const onInputClick = (event) => {
+        event.target.value = ''
+    }
+
 
   return (
     <FormControl>
 
-    <Grid container spacing={24}>
+    <Grid container spacing={10}>
         <Grid item xs={6}>
             <Button variant="contained" component="label" color="primary">
             Upload File
-                <input id="txtDocUpload" type="file" onChange={eventFunct}  hidden />
+                <input id="txtDocUpload" type="file" accept=".txt, .csv" onChange={(e)=> eventFunct(e,state.checkedStopWords )} onClick={onInputClick}  hidden />
             </Button>
-            <FormHelperText id="my-helper-text">This app supports .txt file types.</FormHelperText>
+            <p>.txt & .csv file types.</p>
         </Grid>
         <Grid item xs={6}>
             <FormControlLabel
@@ -52,7 +46,7 @@ function Form({eventFunct}) {
                 color="primary"
             />
             }
-            label={state.checkedStopWords ? "Include Stop Words" : "Exclude Stop Words"}
+            label={state.checkedStopWords ? "Exclude Stop Words" : "Include Stop Words"}
              />
         </Grid>
     </Grid>
